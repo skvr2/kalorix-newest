@@ -159,7 +159,7 @@ export const INITIAL_RECIPES: Recipe[] = [
     timeMinutes: 20,
     servings: 1,
     image: "chicken",
-    imageUrl: "https://images.unsplash.com/photo-1621996346565-e3d5d6281691?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1622973536968-3ead9e780960?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     description: "Klasyk kuchni włoskiej w wersji fit. Makaron pełnoziarnisty z gęstym sosem pomidorowo-ziołowym i chudym mielonym mięsem drobiowym.",
     kcal: 575,
     protein: 52.0,
