@@ -75,6 +75,7 @@ export default function AppShell() {
   useEffect(() => {
     setMounted(true);
     setDayLog(loadDay(selectedDate));
+    setRecipes(loadRecipes());
 
     // Dynamic Theme synchronizer for iOS status bar & safe areas
     const isDark = settings.theme === "dark";

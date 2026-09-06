@@ -12,7 +12,7 @@ import {
 import { INITIAL_RECIPES } from "./recipesData";
 import { FOOD_DATABASE, BaseProduct } from "./database";
 
-const STORAGE_KEY = "kalorix_fitatu_v2_clean";
+const STORAGE_KEY = "kalorix_fitatu_v4";
 
 export const MEAL_LABELS: Record<MealType, { name: string; iconType: "breakfast" | "morning_snack" | "lunch" | "afternoon_snack" | "dinner"; timeHint: string }> = {
   breakfast: { name: "Śniadanie", iconType: "breakfast", timeHint: "07:00 - 09:30" },
@@ -56,7 +56,7 @@ export const DEFAULT_PROFILE: Profile = {
 };
 
 export const DEFAULT_SETTINGS: Settings = {
-  theme: "light",
+  theme: "dark",
   keys: [],
   favoriteFoodIds: ["p-jajko", "p-piers-kurczaka", "p-platki-owsiane", "p-banan", "p-skyr-naturalny"],
 };
@@ -110,6 +110,20 @@ export function emptyDay(date: string): DayLog {
   };
 }
 
+export function mergeRecipes(storedRecipes: Recipe[] = []): Recipe[] {
+  const initialMap = new Map(INITIAL_RECIPES.map((r) => [r.id, r]));
+  const customRecipes: Recipe[] = [];
+  
+  if (Array.isArray(storedRecipes)) {
+    for (const r of storedRecipes) {
+      if (!initialMap.has(r.id)) {
+        customRecipes.push(r);
+      }
+    }
+  }
+  return [...INITIAL_RECIPES, ...customRecipes];
+}
+
 type Store = {
   goals: Goals;
   profile: Profile;
@@ -145,7 +159,7 @@ function read(): Store {
       profile: parsed.profile ?? DEFAULT_PROFILE,
       settings: parsed.settings ?? DEFAULT_SETTINGS,
       days: parsed.days ?? {},
-      recipes: parsed.recipes && parsed.recipes.length ? parsed.recipes : INITIAL_RECIPES,
+      recipes: mergeRecipes(parsed.recipes),
       customProducts: parsed.customProducts ?? [],
     };
   } catch {
@@ -181,7 +195,7 @@ export function saveSettings(settings: Settings) {
   write({ ...read(), settings });
 }
 export function loadRecipes(): Recipe[] {
-  return read().recipes;
+  return mergeRecipes(read().recipes);
 }
 export function saveRecipes(recipes: Recipe[]) {
   write({ ...read(), recipes });
