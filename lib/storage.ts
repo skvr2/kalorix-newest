@@ -12,8 +12,8 @@ import {
 import { INITIAL_RECIPES } from "./recipesData";
 import { FOOD_DATABASE, BaseProduct } from "./database";
 
-const STORAGE_KEY = "kalorix_fitatu_v5";
-const OLD_STORAGE_KEYS = ["kalorix_fitatu_v4", "kalorix_fitatu_v3", "kalorix_fitatu_v2", "kalorix_fitatu_v1"];
+const STORAGE_KEY = "kalorix_fitatu_v6";
+const OLD_STORAGE_KEYS = ["kalorix_fitatu_v5", "kalorix_fitatu_v4", "kalorix_fitatu_v3", "kalorix_fitatu_v2", "kalorix_fitatu_v1"];
 
 export const MEAL_LABELS: Record<MealType, { name: string; iconType: "breakfast" | "morning_snack" | "lunch" | "afternoon_snack" | "dinner"; timeHint: string }> = {
   breakfast: { name: "Śniadanie", iconType: "breakfast", timeHint: "07:00 - 09:30" },

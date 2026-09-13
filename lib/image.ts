@@ -36,3 +36,13 @@ export async function compressImage(file: File, maxDim = 1024, quality = 0.8): P
     reader.readAsDataURL(file);
   });
 }
+
+export function resolveAssetUrl(url?: string): string {
+  if (!url) return "";
+  if (url.startsWith("http://") || url.startsWith("https://") || url.startsWith("data:")) return url;
+  if (typeof window !== "undefined" && window.location.pathname.startsWith("/kalorixxxxx")) {
+    const cleanUrl = url.startsWith("/") ? url.slice(1) : url;
+    return `/kalorixxxxx/${cleanUrl}`;
+  }
+  return url;
+}

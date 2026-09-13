@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Wheat, Drumstick, Egg, Fish, Salad, CakeSlice, Utensils, Sandwich, Flame } from "lucide-react";
+import { resolveAssetUrl } from "@/lib/image";
 
 interface RecipeIconProps {
   iconType: string;
@@ -13,11 +14,12 @@ export function RecipeIcon({ iconType, imageUrl, className = "h-5 w-5" }: Recipe
   const [imgError, setImgError] = useState(false);
 
   if (imageUrl && !imgError) {
+    const src = resolveAssetUrl(imageUrl);
     return (
       <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-2xl border border-gray-100 dark:border-zinc-800 bg-gray-100 dark:bg-zinc-800 shadow-sm">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={imageUrl}
+          src={src}
           alt="Danie"
           loading="lazy"
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"

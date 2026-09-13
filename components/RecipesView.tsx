@@ -4,7 +4,7 @@ import React, { useState, useMemo } from "react";
 import { Search, Clock, Plus, Check, ChevronRight, X, Sparkles, Flame, BookOpen } from "lucide-react";
 import { Recipe, MealType, FoodItem } from "@/lib/types";
 import { MEAL_LABELS, todayISO, addItemsToMeal } from "@/lib/storage";
-import { uid } from "@/lib/image";
+import { uid, resolveAssetUrl } from "@/lib/image";
 import { RecipeIcon } from "./RecipeIcon";
 
 interface RecipesViewProps {
@@ -196,7 +196,7 @@ export function RecipesView({
               <div className="relative h-44 w-full shrink-0 overflow-hidden bg-zinc-900">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={selectedRecipe.imageUrl}
+                  src={resolveAssetUrl(selectedRecipe.imageUrl)}
                   alt={selectedRecipe.title}
                   className="h-full w-full object-cover"
                 />
